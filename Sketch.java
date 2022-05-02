@@ -11,6 +11,9 @@ public class Sketch extends PApplet {
 	PImage imgOverworld;
   PImage imgNether;
   PImage imgSteve;
+  PImage imgBlock;
+  PImage imgTorch;
+  PImage imgPig;
 
   boolean upPressed = false;
   boolean downPressed = false;
@@ -43,18 +46,34 @@ public class Sketch extends PApplet {
     imgSteve = loadImage("STEVE.png");
     imgSteve.resize(96, 200);
 
+    imgBlock = loadImage("block.png");
+    imgBlock.resize(110, 110);
+
+    imgTorch = loadImage("torch.png");
+    imgTorch.resize(100, 100);
+
+    imgPig = loadImage("pig.png");
+    imgPig.resize(100, 100);
+    
+    background(0);
+    
   }
 
   /**
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-	  image(imgOverworld, 0, 0);
-
-    if (keyPressed) {
+    if (keyPressed){
+      if (key == 'o') {
+        image(imgOverworld, 0, 0);
+      }
       if (key == 'n') {
         image(imgNether, 0, 0);
-      } 
+      }
+    }
+
+    if (mousePressed) {
+      image(imgTorch, mouseX - 45, mouseY);
     }
     
     image(imgSteve, SteveX, SteveY);
@@ -73,6 +92,14 @@ public class Sketch extends PApplet {
   }
   
   // define other methods down here.
+  public void mouseClicked() {
+    image(imgBlock, mouseX - 55, mouseY);
+  }
+
+  public void mouseWheel() {
+    image(imgPig, mouseX, mouseY);
+  }
+
   public void keyPressed() {
     if (keyCode == UP) {
       upPressed = true;
@@ -102,4 +129,5 @@ public class Sketch extends PApplet {
       rightPressed = false;
     }
   }
+
 }
