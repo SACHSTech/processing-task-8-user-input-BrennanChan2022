@@ -53,9 +53,7 @@ public class Sketch extends PApplet {
     imgTorch.resize(100, 100);
 
     imgPig = loadImage("pig.png");
-    imgPig.resize(100, 100);
-    
-    background(0);
+    imgPig.resize(200, 200);
     
   }
 
@@ -63,17 +61,18 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
+    background(0);
     if (keyPressed){
       if (key == 'o') {
         image(imgOverworld, 0, 0);
-      }
-      if (key == 'n') {
-        image(imgNether, 0, 0);
       }
     }
 
     if (mousePressed) {
       image(imgTorch, mouseX - 45, mouseY);
+    }
+    else if (mousePressed == false){
+      image(imgBlock, mouseX - 55, mouseY);
     }
     
     image(imgSteve, SteveX, SteveY);
@@ -90,14 +89,15 @@ public class Sketch extends PApplet {
       SteveX++;
     }
   }
+
   
   // define other methods down here.
   public void mouseClicked() {
-    image(imgBlock, mouseX - 55, mouseY);
+    image(imgPig, 150, 100);
   }
 
   public void mouseWheel() {
-    image(imgPig, mouseX, mouseY);
+    image(imgNether, 0, 0);
   }
 
   public void keyPressed() {
