@@ -53,7 +53,7 @@ public class Sketch extends PApplet {
     imgTorch.resize(100, 100);
 
     imgPig = loadImage("pig.png");
-    imgPig.resize(200, 200);
+    imgPig.resize(350, 275);
     
   }
 
@@ -61,6 +61,7 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
+    // Display Minecraft background when the user presses "o", otherwise display black
     background(0);
     if (keyPressed){
       if (key == 'o') {
@@ -68,13 +69,16 @@ public class Sketch extends PApplet {
       }
     }
 
+    // Minecraft Torch cursor when the user presses the mouse button
     if (mousePressed) {
       image(imgTorch, mouseX - 45, mouseY);
     }
+    // Minecraft Block cursor
     else if (mousePressed == false){
       image(imgBlock, mouseX - 55, mouseY);
     }
     
+    // Minecraft Steve that moves according to the user pressing the arrow keys
     image(imgSteve, SteveX, SteveY);
     if (upPressed) {
       SteveY--;
@@ -88,18 +92,29 @@ public class Sketch extends PApplet {
     if (rightPressed) {
       SteveX++;
     }
+
   }
 
   
   // define other methods down here.
+  
+  /**
+   * Displays an image of a minecraft pig whenever the mouse is clicked (pressed and released)
+   */
   public void mouseClicked() {
     image(imgPig, 150, 100);
   }
 
+  /**
+   * Changes the background to an image of the Nether when the user scrolls with the mouse wheel
+   */
   public void mouseWheel() {
     image(imgNether, 0, 0);
   }
 
+  /**
+   * Changes Steve's X and Y coordinates when user presses/holds the arrows keys
+   */
   public void keyPressed() {
     if (keyCode == UP) {
       upPressed = true;
@@ -115,6 +130,9 @@ public class Sketch extends PApplet {
     }
   }
   
+  /**
+   * Stops Steve's X and Y coordinates changing when the user releases the arrows keys
+   */
   public void keyReleased() {
     if (keyCode == UP) {
       upPressed = false;
